@@ -1,15 +1,18 @@
 import './App.css'
 import Navbar from './navbar';
-import Course from './course/Course';
+
+import Student from './student';
+
 
 function App() {
   
 
   return (
-    <>
-    <navbar />
-    <Course></Course>
-    </>
+    <div>
+      
+      
+      <Student name="Revathi" age={21} grade="A" />
+    </div>
   );
 }
 
