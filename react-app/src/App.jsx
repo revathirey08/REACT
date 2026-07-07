@@ -1,17 +1,21 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from './assets/vite.svg'
+import heroImg from './assets/hero.png'
 import './App.css'
-import Navbar from './navbar';
-
-import Student from './student';
-
 
 function App() {
-  
+  const isLogin = true;
 
   return (
     <div>
-      
-      
-      <Student name="Revathi" age={21} grade="A" />
+      <h1>REACT - Conditional Rending</h1>
+
+      {isLogin ? (
+        <h2>Welcome User</h2>
+      ) : (
+        <h2>Please Login</h2>
+      )}
     </div>
   );
 }
