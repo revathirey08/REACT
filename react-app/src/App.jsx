@@ -1,78 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
-
+import { useState } from "react";
+import useFoods from "./hooks/useFoods";
+import FoodCard from "./components/FoodCard";
+import SearchBar from "./components/SearchBar";
+import "./App.css";
 
 function App() {
- 
-  const students = ["Revathi", "Priya", "Riya", "Anu"];
 
+  const foods = useFoods();
 
-  const name = "";
+  const [search, setSearch] = useState("");
 
-
-  const sortedStudents = [...students].sort();
-
-  
-  const filteredStudents = students.filter(
-    (student) => student.startsWith("R")
+  const filteredFoods = foods.filter((food) =>
+    food.name.toLowerCase().includes(search.toLowerCase())
   );
-
- 
-  const [count, setCount] = useState(0);
-
-  
-  function showMessage() {
-    alert("Button Clicked!");
-  }
 
   return (
     <div>
-      <h1>React Concepts</h1>
 
-      
-      <h2>Name: {name ? name : "No Data Available"}</h2>
+      <h1>🍔 Food App</h1>
 
-      <hr />
+      <SearchBar
+        search={search}
+        setSearch={setSearch}
+      />
 
-     
-      <h2>Student List</h2>
-      {students.map((student, index) => (
-        <p key={index}>{student}</p>
+      {filteredFoods.map((food) => (
+        <FoodCard
+          key={food.id}
+          name={food.name}
+        />
       ))}
 
-      <hr />
-
-    
-      <h2>Sorted Students</h2>
-      {sortedStudents.map((student, index) => (
-        <p key={index}>{student}</p>
-      ))}
-
-      <hr />
-
-      
-      <h2>Filtered Students (Starts with R)</h2>
-      {filteredStudents.map((student, index) => (
-        <p key={index}>{student}</p>
-      ))}
-
-      <hr />
-
-      
-      <button onClick={showMessage}>Click Me</button>
-
-      <hr />
-
-      
-      <h2>Counter: {count}</h2>
-
-      <button onClick={() => setCount(count + 1)}>
-        Increment
-      </button>
     </div>
   );
 }
